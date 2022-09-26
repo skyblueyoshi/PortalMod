@@ -11,6 +11,7 @@ function NetworkProxyHandler:__init()
     local SERVER_BOUND_MAPPINGS = {
         [RPC_ID.SB_REQUEST_PORTALS] = NetworkProxyHandler.RequestPortals,
         [RPC_ID.SB_ADD_PORTAL] = NetworkProxyHandler.AddPortal,
+        [RPC_ID.SB_DO_TELEPORT] = NetworkProxyHandler.DoTeleport,
     }
     local CLIENT_BOUND_MAPPINGS = {
         [RPC_ID.CB_RESPONSE_PORTALS] = NetworkProxyHandler.ResponsePortals,
@@ -55,6 +56,12 @@ end
 function NetworkProxyHandler:ResponseAddPortals(data)
     ClientBoundResponse.getInstance():doResponse(
             Mod.current, RPC_ID.CB_RESPONSE_ADD_PORTAL, data)
+end
+
+function NetworkProxyHandler:DoTeleport(player, xi, yi)
+    if Data.getInstance().portals:IsExist(xi, yi) then
+        player:Teleport(xi * 16, yi * 16)
+    end
 end
 
 return NetworkProxyHandler

@@ -51,8 +51,8 @@ function PortalUI.GetUI()
 
     for _, input in ipairs(inputs) do
         panelNew:addChild(UIUtil.createLabel("lb_" .. input[1], input[2],
-            0, inputY, 180, 48,
-            TextAlignment.HCenter, TextAlignment.VCenter, {}))
+                0, inputY, 180, 48,
+                TextAlignment.HCenter, TextAlignment.VCenter, {}))
         local panelInput = UIUtil.createPanel("input_panel_" .. input[1], 0, inputY, 180, 48, {
             marginsLR = { 180, 32 },
             sprite = {
@@ -188,9 +188,21 @@ function PortalUI:_initContent()
     self:FlushListLayout()
 end
 
+function PortalUI:RecvData(data)
+    local function array_reverse(x)
+        local n, m = #x, #x / 2
+        for i = 1, m do
+            x[i], x[n - i + 1] = x[n - i + 1], x[i]
+        end
+        return x
+    end
+    self._portalList = clone(data)
+    self._portalList = array_reverse(self._portalList)
+end
+
 function PortalUI:OnGetData(data)
     print("PortalUI:OnGet", data)
-    self._portalList = clone(data)
+    self:RecvData(data)
     if self._isWaitingData then
         self._isWaitingData = false
 
@@ -223,11 +235,12 @@ function PortalUI:ShowList()
 end
 
 function PortalUI:OnGetPortalResponse(data)
-    self._portalList = clone(data)
+    self:RecvData(data)
     self:ShowList()
 end
 
 function PortalUI:FlushListLayout()
+    self._indexSelected = 0
     self._itemNodes = {}
     UIUtil.setTable(self._panelList, self, true, 1)
 end
@@ -296,10 +309,14 @@ end
 
 function PortalUI:_onBackClicked()
     self.ui.manager:playClickSound()
-    self:_onBgClicked()
+    self:DoClose()
 end
 
 function PortalUI:_onBgClicked()
+    self:DoClose()
+end
+
+function PortalUI:DoClose()
     local player = PlayerUtils.GetCurrentClientPlayer()
     if player then
         local GuiID = require("GuiID")
@@ -319,6 +336,16 @@ function PortalUI:_onOkClicked()
             text = self:getDefaultName()
         end
         NetworkProxy.RPCSendServerBound(Mod.GetByID("portal"), RPC_ID.SB_ADD_PORTAL, self.xi, self.yi, text)
+    else
+        if self._indexSelected > 0 and self._indexSelected <= #self._portalList then
+            local data = self._portalList[self._indexSelected]
+            local xi, yi = data.xi, data.yi
+            NetworkProxy.RPCSendServerBound(Mod.GetByID("portal"), RPC_ID.SB_DO_TELEPORT, xi, yi)
+        end
+
+        SoundUtils.PlaySoundGroup(Reg.SoundGroupID("portal"))
+
+        self:DoClose()
     end
 end
 
