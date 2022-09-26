@@ -9,5 +9,11 @@
     "buildings": "building_objects",
     "blocks": "block_objects",
     "block_presets": "block_ai"
-  }
+  },
+  "websites": [
+    {
+      "title": "Github",
+      "url": "https://github.com/skyblueyoshi/PortalMod"
+    },
+  ]
 }
