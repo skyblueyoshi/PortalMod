@@ -1,0 +1,9 @@
+local RPC_ID = {
+    SB_REQUEST_PORTALS = 1,
+    SB_ADD_PORTAL = 2,
+
+    CB_RESPONSE_PORTALS = 1,
+    CB_RESPONSE_ADD_PORTAL = 2,
+}
+
+return RPC_ID

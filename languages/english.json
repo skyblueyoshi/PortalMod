@@ -1,0 +1,13 @@
+{
+  "modTexts": [
+    ["PORTAL_TITLE", "Portal List" ],
+    ["PORTAL_LOC", "Current Portal Position: (%d, %d)"],
+    ["PORTAL_NAME", "Portal Name"],
+    ["PORTAL_CHOOSE", "Please select a position."],
+    ["PORTAL_DO", "Teleporting!"],
+    ["PORTAL_NEW", "Create Teleport Position"]
+  ],
+  "items": [
+    [ "nature_portal", "Portal", "A natural portal." ]
+  ]
+}

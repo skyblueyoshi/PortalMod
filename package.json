@@ -1,0 +1,13 @@
+{
+  "version" : "1.0.0",
+  "authors" : ["BlueYoshi"],
+  "displayName" : "Portal",
+  "gameVersion" : "Obsidian Edition 1.0",
+  "id" : "portal",
+  "description": "This mod will allow you to teleport around the world.",
+  "objectFolders": {
+    "buildings": "building_objects",
+    "blocks": "block_objects",
+    "block_presets": "block_ai"
+  }
+}

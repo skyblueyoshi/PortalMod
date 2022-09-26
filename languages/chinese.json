@@ -1,0 +1,13 @@
+{
+  "modTexts": [
+    ["PORTAL_TITLE", "传送门列表" ],
+    ["PORTAL_LOC", "当前传送门位置: (%d, %d)"],
+    ["PORTAL_NAME", "传送门名称"],
+    ["PORTAL_CHOOSE", "请选择一个传送坐标。"],
+    ["PORTAL_DO", "传送！"],
+    ["PORTAL_NEW", "新建传送点"]
+  ],
+  "items": [
+    [ "nature_portal", "传送门", "一个天然的传送门" ]
+  ]
+}

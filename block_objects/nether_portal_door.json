@@ -1,0 +1,32 @@
+{
+  "block": {
+    "nether_portal_door": {
+      "textureData": "nether_portal_door.png",
+      "color": [ 255, 0, 255 ],
+      "type": "FURNITURE",
+      "width": 3,
+      "height": 4,
+      "collision": "NONE",
+      "attach": "NONE",
+      "attachable": "NONE",
+      "toolType": "PICKAXE",
+      "mineGrade": "DIAMOND",
+      "hardness": 1000000000,
+      "slipperiness": 1.0,
+      "soundGroupId": "stone",
+      "stepSoundGroupId": "step_stone",
+      "particleColor": [ 255, 200, 200, 255 ],
+      "preset": "portal:Portal",
+      "special": 2,
+      "animation": [
+        {
+          "animationId": 0,
+          "tagUsage": "TAG_NO_USAGE",
+          "frameSpeed": 8,
+          "frameStart": 1,
+          "frameCount": 4
+        }
+      ]
+    }
+  }
+}

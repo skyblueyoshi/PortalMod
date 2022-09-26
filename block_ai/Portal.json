@@ -1,0 +1,8 @@
+
+{
+  "Portal": {
+    "script": {
+      "path": "Portal.lua"
+    }
+  }
+}
